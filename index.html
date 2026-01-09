@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>🌱 Waste Manager</h1>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#dashboard" class="nav-link active" role="menuitem" data-section="dashboard">Dashboard</a></li>
+                <li role="none"><a href="#tracking" class="nav-link" role="menuitem" data-section="tracking">Track Waste</a></li>
+                <li role="none"><a href="#segregation" class="nav-link" role="menuitem" data-section="segregation">Segregation Guide</a></li>
+                <li role="none"><a href="#recycling" class="nav-link" role="menuitem" data-section="recycling">Recycling Info</a></li>
+                <li role="none"><a href="#calculator" class="nav-link" role="menuitem" data-section="calculator">Calculator</a></li>
+                <li role="none"><a href="#schedule" class="nav-link" role="menuitem" data-section="schedule">Schedule</a></li>
+                <li role="none"><a href="#education" class="nav-link" role="menuitem" data-section="education">Learn</a></li>
+                <li role="none"><a href="#achievements" class="nav-link" role="menuitem" data-section="achievements">Achievements</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Progress Dashboard Section -->
+        <section id="dashboard" class="content-section active" aria-labelledby="dashboard-title">
+            <h2 id="dashboard-title">Progress Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <h3>Total Waste Logged</h3>
+                    <p class="stat-value" id="total-waste">0 kg</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Recycling Rate</h3>
+                    <p class="stat-value" id="recycling-rate">0%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>CO₂ Saved</h3>
+                    <p class="stat-value" id="co2-saved">0 kg</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Energy Saved</h3>
+                    <p class="stat-value" id="energy-saved">0 kWh</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Your Level</h3>
+                    <p class="stat-value" id="user-level">Level 1</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Points</h3>
+                    <p class="stat-value" id="total-points">0</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Waste by Category</h3>
+                <div class="chart" id="category-chart"></div>
+            </div>
+            <div class="chart-container">
+                <h3>Recent Activity</h3>
+                <div class="recent-logs" id="recent-logs"></div>
+            </div>
+        </section>
+
+        <!-- Waste Tracking Section -->
+        <section id="tracking" class="content-section" aria-labelledby="tracking-title">
+            <h2 id="tracking-title">Track Your Waste</h2>
+            <form id="waste-tracking-form" class="tracking-form" aria-label="Waste tracking form">
+                <div class="form-group">
+                    <label for="waste-date">Date</label>
+                    <input type="date" id="waste-date" name="date" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="waste-category">Category</label>
+                    <select id="waste-category" name="category" required aria-required="true">
+                        <option value="">Select category</option>
+                        <option value="recyclable">Recyclable</option>
+                        <option value="organic">Organic</option>
+                        <option value="hazardous">Hazardous</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="waste-type">Type</label>
+                    <input type="text" id="waste-type" name="type" placeholder="e.g., Plastic, Paper, Food waste" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="waste-quantity">Quantity</label>
+                    <input type="number" id="waste-quantity" name="quantity" min="0" step="0.1" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="waste-unit">Unit</label>
+                    <select id="waste-unit" name="unit" required aria-required="true">
+                        <option value="kg">kg</option>
+                        <option value="pieces">pieces</option>
+                        <option value="liters">liters</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Log Waste</button>
+            </form>
+            <div class="waste-logs-container">
+                <h3>Your Waste Logs</h3>
+                <div id="waste-logs-list" class="logs-list"></div>
+            </div>
+        </section>
+
+        <!-- Segregation Guide Section -->
+        <section id="segregation" class="contentje-section" aria-labelledby="segregation-title">
+            <h2 id="segregation-title">Waste Segregation Guide</h2>
+            <p class="section-description">Learn where different types of waste should go</p>
+            <div class="segregation-selector">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="recyclable">Recyclable</button>
+                <button class="category-btn" data-category="organic">Organic</button>
+                <button class="category-btn" data-category="hazardous">Hazardous</button>
+                <button class="category-btn" data-category="general">General</button>
+            </div>
+            <div class="segregation-guide" id="segregation-guide"></div>
+        </section>
+
+        <!-- Recycling Info Section -->
+        <section id="recycling" class="content-section" aria-labelledby="recycling-title">
+            <h2 id="recycling-title">Recycling Information</h2>
+            <div class="recycling-grid" id="recycling-grid"></div>
+        </section>
+
+        <!-- Waste Calculator Section -->
+        <section id="calculator" class="content-section" aria-labelledby="calculator-title">
+            <h2 id="calculator-title">Environmental Impact Calculator</h2>
+            <p class="section-description">Calculate the environmental impact of your waste management</p>
+            <form id="calculator-form" class="calculator-form" aria-label="Environmental impact calculator">
+                <div class="form-group">
+                    <label for="calc-category">Waste Category</label>
+                    <select id="calc-category" name="category" required aria-required="true">
+                        <option value="">Select category</option>
+                        <option value="recyclable">Recyclable</option>
+                        <option value="organic">Organic</option>
+                        <option value="hazardous">Hazardous</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="calc-type">Waste Type</label>
+                    <input type="text" id="calc-type" name="type" placeholder="e.g., Plastic, Paper" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="calc-quantity">Quantity (kg)</label>
+                    <input type="number" id="calc-quantity" name="quantity" min="0" step="0.1" required aria-required="true">
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate Impact</button>
+            </form>
+            <div class="calculator-results" id="calculator-results"></div>
+        </section>
+
+        <!-- Collection Schedule Section -->
+        <section id="schedule" class="content-section" aria-labelledby="schedule-title">
+            <h2 id="schedule-title">Collection Schedule</h2>
+            <form id="schedule-form" class="schedule-form" aria-label="Collection schedule form">
+                <div class="form-group">
+                    <label for="schedule-date">Collection Date</label>
+                    <input type="date" id="schedule-date" name="date" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="schedule-type">Waste Type</label>
+                    <select id="schedule-type" name="type" required aria-required="true">
+                        <option value="">Select type</option>
+                        <option value="recyclable">Recyclable</option>
+                        <option value="organic">Organic</option>
+                        <option value="hazardous">Hazardous</option>
+                        <option value="general">General</option>
+                        <option value="all">All Types</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-time">Time (optional)</label>
+                    <input type="time" id="schedule-time" name="time">
+                </div>
+                <div class="form-group">
+                    <label for="schedule-notes">Notes (optional)</label>
+                    <textarea id="schedule-notes" name="notes" rows="3" placeholder="Additional information..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add to Schedule</button>
+            </form>
+            <div class="schedule-list-container">
+                <h3>Upcoming Collections</h3>
+                <div id="schedule-list" class="schedule-list"></div>
+            </div>
+        </section>
+
+        <!-- Educational Content Section -->
+        <section id="education" class="content-section" aria-labelledby="education-title">
+            <h2 id="education-title">Learn About Waste Management</h2>
+            <div class="education-grid" id="education-grid"></div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="content-section" aria-labelledby="achievements-title">
+            <h2 id="achievements-title">Your Achievements</h2>
+            <div class="achievements-container">
+                <div class="points-display">
+                    <h3>Your Progress</h3>
+                    <div class="level-info">
+                        <p>Level: <span id="achievement-level">1</span></p>
+                        <p>Points: <span id="achievement-points">0</span></p>
+                        <div class="level-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="level-progress-fill"></div>
+                            </div>
+                            <p class="progress-text" id="level-progress-text">0 / 100 points to next level</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="badges-container">
+                    <h3>Badges Earned</h3>
+                    <div class="badges-grid" id="badges-grid"></div>
+                </div>
+                <div class="all-badges-container">
+                    <h3>All Available Badges</h3>
+                    <div class="all-badges-grid" id="all-badges-grid"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2024 Waste Management System. Help protect our environment!</p>
+            <p class="footer-links">
+                <a href="#education">Learn More</a> | 
+                <a href="#segregation">Segregation Guide</a> | 
+                <a href="#recycling">Recycling Info</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal for detailed views -->
+    <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <span class="modal-close" aria-label="Close modal">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

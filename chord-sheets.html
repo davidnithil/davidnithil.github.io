@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord Sheets - Gigging Musician</title>
+    <link rel="stylesheet" href="chord-sheets.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>🎸 Chord Sheets</h1>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="upload-btn">
+                    <span>📤</span> Upload Song
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Search and Filter Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" 
+                       id="search-input" 
+                       class="search-input" 
+                       placeholder="🔍 Search songs by name, artist, or key...">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Songs</button>
+                    <button class="filter-btn" data-filter="favorites">Favorites</button>
+                    <button class="filter-btn" data-filter="recent">Recently Used</button>
+                    <button class="filter-btn" data-filter="popular">Most Used</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Songs Grid -->
+        <section class="songs-section">
+            <div class="songs-header">
+                <h2 id="songs-title">All Songs</h2>
+                <span class="song-count" id="song-count">0 songs</span>
+            </div>
+            <div class="songs-grid" id="songs-grid">
+                <!-- Songs will be dynamically inserted here -->
+            </div>
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-icon">🎵</div>
+                <h3>No songs found</h3>
+                <p>Upload your first chord sheet to get started!</p>
+                <button class="btn btn-primary" onclick="document.getElementById('upload-btn').click()">
+                    Upload Song
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload New Chord Sheet</h2>
+                <button class="modal-close" id="close-upload-modal">&times;</button>
+            </div>
+            <form id="upload-form" class="upload-form">
+                <div class="form-group">
+                    <label for="song-name">Song Name *</label>
+                    <input type="text" id="song-name" name="songName" required placeholder="e.g., Wonderwall">
+                </div>
+                <div class="form-group">
+                    <label for="artist-name">Artist</label>
+                    <input type="text" id="artist-name" name="artistName" placeholder="e.g., Oasis">
+                </div>
+                <div class="form-group">
+                    <label for="song-key">Key</label>
+                    <input type="text" id="song-key" name="songKey" placeholder="e.g., G, Am, C">
+                </div>
+                <div class="form-group">
+                    <label for="chord-image">Chord Sheet Image *</label>
+                    <div class="file-upload-area" id="file-upload-area">
+                        <input type="file" id="chord-image" name="chordImage" accept="image/*" required>
+                        <div class="file-upload-preview">
+                            <span class="upload-icon">📎</span>
+                            <p>Click to select or drag and drop</p>
+                            <p class="file-hint">Supports: JPG, PNG, GIF, WebP</p>
+                        </div>
+                        <div class="file-preview" id="file-preview" style="display: none;">
+                            <img id="preview-image" src="" alt="Preview">
+                            <button type="button" class="remove-preview" id="remove-preview">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-upload">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Upload Song</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Modal -->
+    <div id="view-modal" class="modal">
+        <div class="modal-content view-modal-content">
+            <div class="modal-header">
+                <div class="song-info">
+                    <h2 id="view-song-name">Song Name</h2>
+                    <p id="view-song-details">Artist • Key</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-icon" id="favorite-btn" title="Add to favorites">
+                        <span>⭐</span>
+                    </button>
+                    <button class="btn-icon" id="delete-btn" title="Delete song">
+                        <span>🗑️</span>
+                    </button>
+                    <button class="modal-close" id="close-view-modal">&times;</button>
+                </div>
+            </div>
+            <div class="chord-image-container">
+                <img id="view-chord-image" src="" alt="Chord Sheet">
+            </div>
+            <div class="song-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Times Used:</span>
+                    <span class="stat-value" id="view-usage-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Last Used:</span>
+                    <span class="stat-value" id="view-last-used">Never</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chord-sheets.js"></script>
+</body>
+</html>
